@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Orders</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Montserrat',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f4f1ea;
+    overflow:hidden;
+}
+
+/* Background */
+
+body::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:#d6b98c;
+    border-radius:50%;
+    top:-150px;
+    left:-150px;
+    opacity:0.4;
+}
+
+body::after{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:#8b5e34;
+    border-radius:50%;
+    bottom:-120px;
+    right:-120px;
+    opacity:0.2;
+}
+
+/* Main Box */
+
+.orders-box{
+    position:relative;
+    width:1000px;
+    height:650px;
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    display:flex;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+    z-index:10;
+}
+
+/* Left Section */
+
+.left-section{
+    width:35%;
+    background:linear-gradient(to bottom right,#5a3e2b,#8b5e34);
+    color:white;
+    padding:60px 40px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.left-section h1{
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.left-section p{
+    font-size:16px;
+    line-height:1.8;
+    color:#f1e9dc;
+}
+
+/* Right Section */
+
+.right-section{
+    width:65%;
+    padding:40px;
+    overflow-y:auto;
+    text-align:center;
+}
+
+/* Icon */
+
+.orders-icon{
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+/* Heading */
+
+.right-section h2{
+    color:#5a3e2b;
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.orders-text{
+    color:gray;
+    margin-bottom:30px;
+}
+
+/* Orders */
+
+.order-container{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+}
+
+/* Card */
+
+.order-card{
+    background:#fafafa;
+    border:1px solid #eee;
+    border-radius:22px;
+    padding:22px;
+    text-align:left;
+    transition:0.3s;
+}
+
+.order-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 6px 15px rgba(0,0,0,0.08);
+}
+
+/* Top Section */
+
+.top-order{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* Order ID */
+
+.order-id{
+    color:#8b5e34;
+    font-weight:600;
+}
+
+/* Status */
+
+.status{
+    background:#e7f8ec;
+    color:#27ae60;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:500;
+}
+
+/* Date */
+
+.date{
+    margin-top:10px;
+    color:gray;
+    font-size:14px;
+}
+
+/* Title */
+
+.items-title{
+    margin-top:20px;
+    margin-bottom:15px;
+    color:#444;
+    font-weight:600;
+}
+
+/* Item */
+
+.item{
+    background:white;
+    border-radius:14px;
+    padding:14px;
+    margin-bottom:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border:1px solid #eee;
+}
+
+.item span{
+    color:#333;
+}
+
+.item b{
+    color:#8b5e34;
+}
+
+/* Bottom */
+
+.bottom-section{
+    margin-top:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* Total */
+
+.total{
+    font-size:20px;
+    font-weight:600;
+    color:#5a3e2b;
+}
+
+/* Payment */
+
+.payment{
+    background:#f1f1f1;
+    padding:8px 14px;
+    border-radius:20px;
+    color:#555;
+    font-size:14px;
+}
+
+/* Empty */
+
+.empty-orders{
+    background:#fafafa;
+    padding:30px;
+    border-radius:18px;
+    color:gray;
+}
+
+/* Button */
+
+.home-btn{
+    display:inline-block;
+    margin-top:35px;
+    padding:14px 28px;
+    background:#8b5e34;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    transition:0.3s;
+}
+
+.home-btn:hover{
+    background:#5a3e2b;
+    transform:translateY(-2px);
+}
+</style>
+</head>
+
+<body>
+
+<div class="orders-box">
+
+    <!-- Left Section -->
+
+    <div class="left-section">
+
+        <h1>BookHaven</h1>
+
+        <p>
+            Track your previous purchases and revisit your favorite book collections anytime.
+        </p>
+
+    </div>
+
+    <!-- Right Section -->
+
+    <div class="right-section">
+
+        <div class="orders-icon">
+            📦
+        </div>
+
+        <h2>My Orders</h2>
+
+        <p class="orders-text">
+            Your recent and previous orders will appear here.
+        </p>
+
+        <div class="order-container" id="orders"></div>
+
+        <a class="home-btn" href="homepage.html">
+            📚 Explore More Books
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+/*
+IMPORTANT:
+Your orders are already being remembered because
+you are storing them in localStorage using:
+
+localStorage.setItem("allOrders", JSON.stringify(orders));
+
+So when the page reloads,
+the previous orders stay saved automatically.
+*/
+
+let orders = JSON.parse(localStorage.getItem("allOrders")) || [];
+
+let container = document.getElementById("orders");
+
+if(orders.length === 0){
+
+    container.innerHTML = `
+        <div class="empty-orders">
+            No orders yet 😢
+        </div>
+    `;
+
+}else{
+
+    // latest order first
+    orders.reverse().forEach(order => {
+
+        let div = document.createElement("div");
+
+        div.className = "order-card";
+
+        let html = `
+
+            <div class="top-order">
+
+                <div class="order-id">
+                    Order ID: ${order.id}
+                </div>
+
+                <div class="status">
+                    Delivered
+                </div>
+
+            </div>
+
+            <div class="date">
+                ${order.date}
+            </div>
+
+            <div class="items-title">
+                Books Ordered
+            </div>
+        `;
+
+        order.items.forEach(item => {
+
+            html += `
+                <div class="item">
+                    <span>${item.name}</span>
+                    <b>₹ ${item.price}</b>
+                </div>
+            `;
+
+        });
+
+        html += `
+
+            <div class="bottom-section">
+
+                <div class="total">
+                    Total: ₹ ${order.total}
+                </div>
+
+                <div class="payment">
+                    ${order.payment.toUpperCase()}
+                </div>
+
+            </div>
+        `;
+
+        div.innerHTML = html;
+
+        container.appendChild(div);
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

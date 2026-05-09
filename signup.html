@@ -1,0 +1,177 @@
+<html>
+<head>
+<title>Online Book Store - Sign Up</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #ece9e6, #ffffff);
+}
+
+/* Signup Container */
+.signup-container{
+    width: 420px;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+/* Heading */
+.signup-container h1{
+    color: #4b2e2e;
+    margin-bottom: 10px;
+    font-size: 32px;
+}
+
+.signup-container p{
+    color: gray;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+/* Table Styling */
+table{
+    width: 100%;
+}
+
+td{
+    padding: 10px 0;
+    text-align: left;
+    font-size: 14px;
+    color: #444;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="password"]{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s;
+    background: #f9f9f9;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus{
+    border-color: #8b5e34;
+    background: white;
+    box-shadow: 0 0 5px rgba(139,94,52,0.3);
+}
+
+/* Button */
+input[type="submit"]{
+    width: 100%;
+    padding: 13px;
+    background: #8b5e34;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover{
+    background: #5a3e2b;
+    transform: scale(1.02);
+}
+
+/* Login Link */
+.center-links{
+    margin-top: 20px;
+}
+
+.center-links a{
+    text-decoration: none;
+    color: #8b5e34;
+    font-weight: 500;
+}
+
+.center-links a:hover{
+    text-decoration: underline;
+}
+</style>
+</head>
+<body>
+
+<div class="signup-container">
+
+    <h1>BookHaven</h1>
+    <p>Create your reader account</p>
+
+    <form action="homepage.html" method="get">
+
+        <table>
+
+            <tr>
+                <td>Full Name</td>
+            </tr>
+            <tr>
+                <td><input type="text" name="name" required></td>
+            </tr>
+
+            <tr>
+                <td>Email</td>
+            </tr>
+            <tr>
+                <td><input type="email" name="email" required></td>
+            </tr>
+
+            <tr>
+                <td>Phone Number</td>
+            </tr>
+            <tr>
+                <td><input type="text" name="phone" required></td>
+            </tr>
+
+            <tr>
+                <td>Username</td>
+            </tr>
+            <tr>
+                <td><input type="text" name="username" required></td>
+            </tr>
+
+            <tr>
+                <td>Password</td>
+            </tr>
+            <tr>
+                <td><input type="password" name="password" required></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="submit" value="Create Account">
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+
+    <div class="center-links">
+        <a href="week2.html">Already have an account? Login</a>
+    </div>
+
+</div>
+
+</body>
+</html>

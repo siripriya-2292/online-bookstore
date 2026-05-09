@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BookHaven Checkout</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Montserrat',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f4f1ea;
+    overflow:hidden;
+}
+
+/* Background Circles */
+
+body::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:#d6b98c;
+    border-radius:50%;
+    top:-150px;
+    left:-150px;
+    opacity:0.4;
+}
+
+body::after{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:#8b5e34;
+    border-radius:50%;
+    bottom:-120px;
+    right:-120px;
+    opacity:0.2;
+}
+
+/* Main Box */
+
+.checkout-box{
+    position:relative;
+    width:900px;
+    height:600px;
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    display:flex;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+    z-index:10;
+}
+
+/* Left Section */
+
+.left-section{
+    width:40%;
+    background:linear-gradient(to bottom right,#5a3e2b,#8b5e34);
+    color:white;
+    padding:60px 40px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.left-section h1{
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.left-section p{
+    font-size:16px;
+    line-height:1.8;
+    color:#f1e9dc;
+}
+
+/* Right Section */
+
+.right-section{
+    width:60%;
+    padding:50px;
+    overflow-y:auto;
+}
+
+.right-section h2{
+    color:#5a3e2b;
+    margin-bottom:25px;
+    font-size:34px;
+}
+
+/* Checkout Items */
+
+#items{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.checkout-item{
+    background:#fafafa;
+    border:1px solid #eee;
+    border-radius:15px;
+    padding:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition:0.3s;
+}
+
+.checkout-item:hover{
+    transform:translateY(-3px);
+    box-shadow:0 5px 12px rgba(0,0,0,0.08);
+}
+
+.checkout-item span{
+    font-weight:500;
+    color:#333;
+}
+
+.checkout-item b{
+    color:#8b5e34;
+}
+
+/* Total */
+
+#total{
+    margin-top:25px;
+    color:#5a3e2b;
+    font-size:28px;
+}
+
+/* Payment Section */
+
+.payment-section{
+    margin-top:30px;
+}
+
+.payment-section h3{
+    margin-bottom:20px;
+    color:#444;
+}
+
+.payment-section label{
+    display:block;
+    margin-bottom:15px;
+    font-size:15px;
+    color:#555;
+    cursor:pointer;
+}
+
+.payment-section input{
+    margin-right:10px;
+}
+
+/* Button */
+
+.place-btn{
+    width:100%;
+    padding:15px;
+    margin-top:35px;
+    border:none;
+    border-radius:30px;
+    background:#8b5e34;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.place-btn:hover{
+    background:#5a3e2b;
+    transform:translateY(-2px);
+}
+</style
+</head>
+
+<body>
+
+<div class="checkout-box">
+
+    <!-- Left Section -->
+
+    <div class="left-section">
+
+        <h1>BookHaven</h1>
+
+        <p>
+            Complete your purchase and continue your reading journey with your favorite books.
+        </p>
+
+    </div>
+
+    <!-- Right Section -->
+
+    <div class="right-section">
+
+        <h2>Checkout</h2>
+
+        <div id="items"></div>
+
+        <h3 id="total"></h3>
+
+        <!-- Payment -->
+
+        <div class="payment-section">
+
+            <h3>Select Payment Method</h3>
+
+            <label>
+                <input type="radio" name="pay" value="cod" checked>
+                Cash on Delivery
+            </label>
+
+            <label>
+                <input type="radio" name="pay" value="upi">
+                UPI
+            </label>
+
+            <label>
+                <input type="radio" name="pay" value="card">
+                Card
+            </label>
+
+        </div>
+
+        <button class="place-btn" onclick="placeOrder()">
+            Place Order
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("checkoutCart")) || [];
+
+let container = document.getElementById("items");
+let totalBox = document.getElementById("total");
+
+let total = 0;
+
+// show items
+cart.forEach(item => {
+
+    let div = document.createElement("div");
+
+    div.classList.add("checkout-item");
+
+    div.innerHTML = `
+        <span>${item.name}</span>
+        <b>₹ ${item.price}</b>
+    `;
+
+    container.appendChild(div);
+
+    total += item.price;
+});
+
+// total
+totalBox.innerText = "Total: ₹ " + total;
+
+// place order
+function placeOrder() {
+
+    let method = document.querySelector('input[name="pay"]:checked').value;
+
+    let order = {
+        id: "ORD" + Math.floor(Math.random() * 100000),
+        items: cart,
+        total: total,
+        payment: method,
+        date: new Date().toLocaleString()
+    };
+
+    let orders = JSON.parse(localStorage.getItem("allOrders")) || [];
+
+    orders.push(order);
+
+    localStorage.setItem("allOrders", JSON.stringify(orders));
+
+    localStorage.setItem("lastOrder", JSON.stringify(order));
+
+    localStorage.removeItem("checkoutCart");
+
+    if(method === "cod"){
+        window.location.href = "success.html";
+    }
+    else if(method === "upi"){
+        window.location.href = "upi-payment.html";
+    }
+    else{
+        window.location.href = "card-payment.html";
+    }
+}
+</script>
+
+</body>
+</html>

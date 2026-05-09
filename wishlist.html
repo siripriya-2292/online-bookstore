@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Wishlist</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Montserrat',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f4f1ea;
+    overflow:hidden;
+}
+
+/* Background */
+
+body::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:#d6b98c;
+    border-radius:50%;
+    top:-150px;
+    left:-150px;
+    opacity:0.4;
+}
+
+body::after{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:#8b5e34;
+    border-radius:50%;
+    bottom:-120px;
+    right:-120px;
+    opacity:0.2;
+}
+
+/* Main Box */
+
+.wishlist-box{
+    position:relative;
+    width:900px;
+    height:600px;
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    display:flex;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+    z-index:10;
+}
+
+/* Left Section */
+
+.left-section{
+    width:40%;
+    background:linear-gradient(to bottom right,#5a3e2b,#8b5e34);
+    color:white;
+    padding:60px 40px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.left-section h1{
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.left-section p{
+    font-size:16px;
+    line-height:1.8;
+    color:#f1e9dc;
+}
+
+/* Right Section */
+
+.right-section{
+    width:60%;
+    padding:50px;
+    overflow-y:auto;
+    text-align:center;
+}
+
+/* Icon */
+
+.wishlist-icon{
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+/* Heading */
+
+.right-section h2{
+    color:#5a3e2b;
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.wishlist-text{
+    color:gray;
+    margin-bottom:30px;
+}
+
+/* Wishlist List */
+
+#list{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+/* Wishlist Item */
+
+.wishlist-item{
+    background:#fafafa;
+    border:1px solid #eee;
+    border-radius:18px;
+    padding:18px;
+    text-align:left;
+    transition:0.3s;
+}
+
+.wishlist-item:hover{
+    transform:translateY(-3px);
+    box-shadow:0 5px 12px rgba(0,0,0,0.08);
+}
+
+.wishlist-item span{
+    color:#333;
+    font-size:17px;
+    font-weight:500;
+}
+
+/* Empty Box */
+
+.empty-box{
+    background:#fafafa;
+    border-radius:18px;
+    padding:30px;
+    color:gray;
+    font-size:17px;
+}
+
+/* Button */
+
+.home-btn{
+    display:inline-block;
+    margin-top:35px;
+    padding:14px 28px;
+    background:#8b5e34;
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    transition:0.3s;
+}
+
+.home-btn:hover{
+    background:#5a3e2b;
+    transform:translateY(-2px);
+}
+</style>
+</head>
+
+<body>
+
+<div class="wishlist-box">
+
+    <!-- Left Section -->
+
+    <div class="left-section">
+
+        <h1>BookHaven</h1>
+
+        <p>
+            Save your favorite books and build your dream reading collection.
+        </p>
+
+    </div>
+
+    <!-- Right Section -->
+
+    <div class="right-section">
+
+        <div class="wishlist-icon">
+            ❤️
+        </div>
+
+        <h2>My Wishlist</h2>
+
+        <p class="wishlist-text">
+            Your saved books will appear here.
+        </p>
+
+        <div id="list"></div>
+
+        <a class="home-btn" href="homepage.html">
+            📚 Explore More Books
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+let list = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+let box = document.getElementById("list");
+
+if(list.length === 0){
+
+    box.innerHTML = `
+        <div class="empty-box">
+            No books in wishlist 😢
+        </div>
+    `;
+
+}else{
+
+    list.forEach(item => {
+
+        let div = document.createElement("div");
+
+        div.className = "wishlist-item";
+
+        div.innerHTML = `
+            <span>📚 ${item}</span>
+        `;
+
+        box.appendChild(div);
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

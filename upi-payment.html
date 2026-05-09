@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>UPI Payment</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Montserrat',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f4f1ea;
+    overflow:hidden;
+}
+
+/* Background */
+
+body::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:#d6b98c;
+    border-radius:50%;
+    top:-150px;
+    left:-150px;
+    opacity:0.4;
+}
+
+body::after{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:#8b5e34;
+    border-radius:50%;
+    bottom:-120px;
+    right:-120px;
+    opacity:0.2;
+}
+
+/* Main Box */
+
+.payment-box{
+    position:relative;
+    width:850px;
+    height:500px;
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    display:flex;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+    z-index:10;
+}
+
+/* Left Section */
+
+.left-section{
+    width:40%;
+    background:linear-gradient(to bottom right,#5a3e2b,#8b5e34);
+    color:white;
+    padding:60px 40px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.left-section h1{
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.left-section p{
+    font-size:16px;
+    line-height:1.8;
+    color:#f1e9dc;
+}
+
+/* Right Section */
+
+.right-section{
+    width:60%;
+    padding:50px;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+/* Icon */
+
+.upi-icon{
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+/* Heading */
+
+.right-section h2{
+    color:#5a3e2b;
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+.payment-text{
+    color:gray;
+    margin-bottom:30px;
+    line-height:1.6;
+}
+
+/* UPI Box */
+
+.upi-box{
+    background:#fafafa;
+    border:2px dashed #8b5e34;
+    padding:18px;
+    border-radius:15px;
+    font-size:24px;
+    font-weight:600;
+    color:#5a3e2b;
+    margin-bottom:20px;
+}
+
+/* Small Text */
+
+.small-text{
+    color:#666;
+    font-size:14px;
+    margin-bottom:30px;
+}
+
+/* Button */
+
+.pay-btn{
+    padding:15px;
+    border:none;
+    border-radius:30px;
+    background:#8b5e34;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.pay-btn:hover{
+    background:#5a3e2b;
+    transform:translateY(-2px);
+}
+</style>
+</head>
+
+<body>
+
+<div class="payment-box">
+
+    <!-- Left Section -->
+
+    <div class="left-section">
+
+        <h1>BookHaven</h1>
+
+        <p>
+            Securely complete your payment using UPI and continue your reading journey.
+        </p>
+
+    </div>
+
+    <!-- Right Section -->
+
+    <div class="right-section">
+
+        <div class="upi-icon">
+            📱
+        </div>
+
+        <h2>UPI Payment</h2>
+
+        <p class="payment-text">
+            Scan or use the UPI ID below to complete your payment.
+        </p>
+
+        <!-- UPI ID -->
+
+        <div class="upi-box">
+            shop@upi
+        </div>
+
+        <p class="small-text">
+            After completing the payment click the button below 👇
+        </p>
+
+        <button class="pay-btn" onclick="confirmPayment()">
+            Confirm Payment
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+function confirmPayment(){
+
+    alert("Payment Successful via UPI 🎉");
+
+    window.location.href = "success.html";
+
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,319 @@
+<html>
+<head>
+<title>Online Book Store</title>
+<script src="bookscript.js"></script>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Montserrat',sans-serif;
+}
+
+body{
+    background:#f4f1ea;
+    padding:20px;
+}
+
+/* ================= TOP BAR ================= */
+
+.top-bar{
+    background:white;
+    padding:20px 30px;
+    border-radius:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    margin-bottom:30px;
+    flex-wrap:wrap;
+}
+
+.title{
+    color:#5a3e2b;
+    font-size:30px;
+}
+
+/* ================= SEARCH BOX ================= */
+
+.search-box input{
+    width:300px;
+    padding:12px 20px;
+    border:none;
+    border-radius:30px;
+    outline:none;
+    background:#f1f1f1;
+    font-size:15px;
+    transition:0.3s;
+}
+
+.search-box input:focus{
+    background:white;
+    box-shadow:0 0 5px rgba(139,94,52,0.3);
+}
+
+/* ================= TOP RIGHT BUTTONS ================= */
+
+.top-right{
+    display:flex;
+    gap:15px;
+}
+
+.profile-btn,
+.cart-btn{
+    padding:12px 20px;
+    border:none;
+    border-radius:30px;
+    background:#8b5e34;
+    color:white;
+    cursor:pointer;
+    font-size:15px;
+    transition:0.3s;
+}
+
+.profile-btn:hover,
+.cart-btn:hover{
+    background:#5a3e2b;
+    transform:translateY(-2px);
+}
+
+/* ================= SECTION TITLES ================= */
+
+.genre-title{
+    font-size:28px;
+    color:#5a3e2b;
+    margin:40px 0 20px;
+    padding-left:10px;
+}
+
+/* ================= BOOK CONTAINER ================= */
+
+.book-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+/* ================= BOOK CARD ================= */
+
+.book-card{
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.book-card:hover{
+    transform:translateY(-8px);
+}
+
+.book-card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:15px;
+    margin-bottom:15px;
+}
+
+/* ================= BOOK DETAILS ================= */
+
+.book-title{
+    font-size:18px;
+    font-weight:600;
+    color:#333;
+    margin-bottom:10px;
+}
+
+.price{
+    color:#8b5e34;
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn,
+.book-card button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    margin-top:10px;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.btn{
+    background:#8b5e34;
+    color:white;
+}
+
+.btn:hover{
+    background:#5a3e2b;
+}
+
+.book-card button:last-child{
+    background:#f1f1f1;
+    color:#333;
+}
+
+.book-card button:last-child:hover{
+    background:#ffd6de;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+    .top-bar{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .search-box input{
+        width:100%;
+    }
+
+}
+@keyframes pop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.5); }
+    100% { transform: scale(1); }
+}
+
+.pop {
+    animation: pop 0.3s ease;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class = "top-bar">
+<h1 class = "title">📚Welcome to BookHaven</h1>
+
+<div class="search-box">
+        <input type="text" id="search" onkeyup="searchBooks()" placeholder="Search books...">
+</div>
+
+<div class="top-right">
+ 	<button class="profile-btn" onclick = "goToProfile()">👤</button>
+	<button class="cart-btn" onclick="goToCart()">🛒 Cart <span id = "cart-count">0</span>
+</button>
+
+</div>
+</div>
+
+<h2 class="section-title">Books</h2>
+
+<div class="book-container" id="bookContainer">
+
+    <div class="book-card">
+        <img src="https://covers.openlibrary.org/b/id/7984916-L.jpg">
+        <div class="book-title">Harry Potter</div>
+        <div class="price">₹ 499</div>
+        <button class="btn" onclick="addToCart('Harry Potter', 499)">Add to Cart 🛒</button>
+	<button onclick="addToWishlist('Harry Potter')">❤️ Wishlist</button>
+    </div>
+
+    <div class="book-card">
+        <img src="https://covers.openlibrary.org/b/id/8231856-L.jpg">
+        <div class="book-title">The Alchemist</div>
+        <div class="price">₹ 299</div>
+        <button class="btn" onclick="addToCart('The Alchemist', 299)">Add to Cart 🛒</button>
+	<button onclick="addToWishlist('The Alchemist')">❤️ Wishlist</button>
+    </div>
+
+    <div class = "book-card">
+	<img src = "https://covers.openlibrary.org/b/id/10523338-L.jpg">
+	<div class = "book-title">Secrets we keep</div>
+	<div class = "price">₹ 599</div>
+	<button class = "btn" onclick="addToCart('Secrets we keep', 599)">Add to Cart 🛒</button>
+	<button onclick="addToWishlist('Secrets we keep')">❤️ Wishlist</button>
+    </div>
+
+    <div class = "book-card">
+	<img src = "https://covers.openlibrary.org/b/id/8226191-L.jpg">
+	<div class = "book-title">Rich Dad Poor Dad</div>
+	<div class = "price">₹ 899</div>
+	<button class = "btn" onclick="addToCart('Rich Dad Poor Dad', 899)">Add to Cart 🛒</button>
+	<button onclick="addToWishlist('Rich Dad Poor Dad')">❤️ Wishlist</button>
+    </div>
+
+    <div class = "book-card">
+	<img src = "https://covers.openlibrary.org/b/id/15155999-L.jpg">
+	<div class = "book-title">Katabasis</div>
+	<div class = "price">₹ 970</div>
+	<button class = "btn" onclick="addToCart('Katabasis', 970)">Add to Cart 🛒</button>
+	<button onclick="addToWishlist('Katabasis')">❤️ Wishlist</button>
+    </div>
+
+    <div class = "book-card">
+	<img src = "https://covers.openlibrary.org/b/id/14847911-L.jpg">
+	<div class = "book-title">Sunrise on the Reaping</div>
+	<div class = "price">₹ 599</div>
+	<button class = "btn" onclick="addToCart('Sunrise on the Reaping', 599)">Add to Cart 🛒</button>
+	<button onclick="addToWishlist('Sunrise on the Reaping')">❤️ Wishlist</button>
+    </div>
+
+    <div class = "book-card">
+	<img src = "https://covers.openlibrary.org/b/id/15110062-L.jpg">
+	<div class = "book-title">A Hundred Hugs</div>
+	<div class = "price">₹ 1210</div>
+	<button class = "btn" onclick="addToCart('A Hundred Hugs', 1210)">Add to Cart 🛒</button>
+	<button onclick="addToWishlist('A Hundred Hugs')">❤️ Wishlist</button>
+    </div>
+
+    <div class = "book-card">
+	<img src = "https://covers.openlibrary.org/b/id/15125740-L.jpg">
+	<div class = "book-title">Lisey's Story</div>
+	<div class = "price">₹ 670</div>
+	<button class = "btn" onclick="addToCart('Liseys Story', 670)">Add to Cart 🛒</button>
+	<button onclick="addToWishlist('Liseys Story')">❤️ Wishlist</button>
+    </div>
+
+    <div class = "book-card">
+	<img src = "https://covers.openlibrary.org/b/id/15125500-L.jpg">
+	<div class = "book-title">Stellaluna</div>
+	<div class = "price">₹ 990</div>
+	<button class = "btn" onclick="addToCart('Stellaluna', 990)">Add to Cart 🛒</button>
+	<button onclick="addToWishlist('Stellaluna')">❤️ Wishlist</button>
+    </div>
+
+    <div class = "book-card">
+	<img src = "https://covers.openlibrary.org/b/id/15166224-L.jpg">
+	<div class = "book-title">The jungle</div>
+	<div class = "price">₹ 1010</div>
+	<button class = "btn" onclick="addToCart('The jungle', 1010)">Add to Cart 🛒</button>
+	<button onclick="addToWishlist('The jungle')">❤️ Wishlist</button>
+    </div>
+
+    <div class = "book-card">
+	<img src = "https://covers.openlibrary.org/b/id/15146920-L.jpg">
+	<div class = "book-title">Marriage by contract</div>
+	<div class = "price">₹ 1930</div>
+	<button class = "btn" onclick="addToCart('Marriage by contract', 1930)">Add to Cart 🛒</button>
+	<button onclick="addToWishlist('Marriage by contract')">❤️ Wishlist</button>
+    </div>
+
+    <div class = "book-card">
+	<img src = "https://covers.openlibrary.org/b/id/15211057-L.jpg">
+	<div class = "book-title">Punk 57</div>
+	<div class = "price">₹ 890</div>
+	<button class = "btn" onclick="addToCart('Punk 57', 890)">Add to Cart 🛒</button>
+	<button onclick="addToWishlist('Punk 57')">❤️ Wishlist</button>
+    </div>
+
+</div>
+
+</body>
+</html>
