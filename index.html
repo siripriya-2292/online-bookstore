@@ -1,0 +1,203 @@
+<html>
+<head>
+<title>Online Book Store - Login</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f4f1ea;
+    overflow: hidden;
+}
+
+/* Background Design */
+body::before{
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: #d6b98c;
+    border-radius: 50%;
+    top: -150px;
+    left: -150px;
+    opacity: 0.4;
+}
+
+body::after{
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: #8b5e34;
+    border-radius: 50%;
+    bottom: -120px;
+    right: -120px;
+    opacity: 0.2;
+}
+
+/* Main Login Box */
+.login-box{
+    position: relative;
+    width: 850px;
+    height: 500px;
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+/* Left Side */
+.left-section{
+    width: 50%;
+    background: linear-gradient(to bottom right, #5a3e2b, #8b5e34);
+    color: white;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left-section h1{
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.left-section p{
+    font-size: 16px;
+    line-height: 1.7;
+    color: #f1e9dc;
+}
+
+/* Right Side */
+.right-section{
+    width: 50%;
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-section h2{
+    color: #5a3e2b;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+/* Input Fields */
+.input-group{
+    margin-bottom: 20px;
+}
+
+.input-group input{
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-bottom: 2px solid #dcdcdc;
+    outline: none;
+    font-size: 15px;
+    transition: 0.3s;
+    background: transparent;
+}
+
+.input-group input:focus{
+    border-color: #8b5e34;
+}
+
+/* Login Button */
+.login-btn{
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 30px;
+    background: #8b5e34;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.login-btn:hover{
+    background: #5a3e2b;
+    transform: scale(1.02);
+}
+
+/* Links */
+.links{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.links a{
+    text-decoration: none;
+    color: #8b5e34;
+    font-weight: 600;
+}
+
+.links a:hover{
+    text-decoration: underline;
+}
+</style>
+
+</head>
+<body>
+
+<div class="login-box">
+
+    <!-- Left Side -->
+    <div class="left-section">
+        <h1>BookHaven</h1>
+
+        <p>
+            Discover thousands of books, novels, and stories from every genre.
+            Read, explore, and shop your favorite collections online.
+        </p>
+    </div>
+
+    <!-- Right Side -->
+    <div class="right-section">
+
+        <h2>Login</h2>
+
+        <form action="homepage.html">
+
+            <div class="input-group">
+                <input type="text" placeholder="Username" required>
+            </div>
+
+            <div class="input-group">
+                <input type="password" placeholder="Password" required>
+            </div>
+
+            <button class="login-btn">Sign In</button>
+
+        </form>
+
+        <div class="links">
+            <p>New Reader? <a href="signup.html">Create Account</a></p>
+	    <p>
+    <a href="forgot-password.html">Forgot Password?</a>
+</p>
+        </div>
+
+    </div>
+
+</div>
+<script src = "bookscript.js"></script>
+
+</body>
+</html>
